@@ -211,6 +211,7 @@ def kone():
         konto = konto - bet + bet * 6
         print ("Vyhra činí", bet*6)
     else:
+        konto = konto - bet
         print("Prohra vyhrál kůň",vyhernikun)    
         
     
