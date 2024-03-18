@@ -3,11 +3,25 @@ import msvcrt
 
 print("Vítejte v Casinu imperial")
 
+global konto
+
+konto = 0
+
 def penize():
     global konto
-    konto = int(input("Vložte finanční prostředky: "))
-    print("Na vašem konťe je", konto)
-    casino()
+    if konto >= 0:
+        print("Na vašem kontě je", konto)
+        choice = input("Chcete vložit finanční prostředky? (ano/ne): ")
+        if choice == "ano":
+            add_konto = int(input("Zadejte čásku: "))
+            konto = konto + add_konto
+            print("Na vašem kontě máte ",konto, " korun.")
+            casino()
+        elif choice == "ne":
+            casino()
+        else:
+            print("Toto nebyla možnost.")
+            penize()
 
 def rulleta():
     global konto
@@ -76,12 +90,108 @@ def rulleta():
         print("Stav konta:", konto)
 
         if konto == 0:
-            print("Došli vám peníze.")
+            print("Došly vám peníze.")
             return False
         return True
 
 def Blackjack():
-    pack 
+    global konto
+    while True:
+        bet = int(input("Zadejte sázku prosím: "))
+        if bet > konto:
+            print("Nemáte dostatek financí.")
+            continue
+        if bet <= konto:
+            break
+
+    # Baliček karet
+    deck = ["Eso ♠", "2 ♠", "3 ♠", "4 ♠", "5 ♠", "6 ♠", "7 ♠", "8 ♠", "9 ♠", "10 ♠", "Jack ♠", "Dama ♠", "Kral ♠", 
+            "Eso ♣", "2 ♣", "3 ♣", "4 ♣", "5 ♣", "6 ♣", "7 ♣", "8 ♣", "9 ♣", "10 ♣", "Jack ♣", "Dama ♣", "Kral ♣", 
+            "Eso ♥", "2 ♥", "3 ♥", "4 ♥", "5 ♥", "6 ♥", "7 ♥", "8 ♥", "9 ♥", "10 ♥", "Jack ♥", "Dama ♥", "Kral ♥",
+            "Eso ♦", "2 ♦", "3 ♦", "4 ♦", "5 ♦", "6 ♦", "7 ♦", "8 ♦", "9 ♦", "10 ♦", "Jack ♦", "Dama ♦", "Kral ♦"]
+
+    # Zamichani baličku
+    random.shuffle(deck)
+
+    # Karty hráče
+    player_hand = []
+
+    # Karty dealera
+    dealer_hand = []
+
+    # Rozdá první dve karty hraci
+    for i in range(2):
+        player_hand.append(deck.pop(0))
+
+    # Rozdá první dve karty dealerovi
+    for i in range(2):
+        dealer_hand.append(deck.pop(0))
+
+    # Ukaze karty 
+    print("Vaše karty:", player_hand)
+    print("Karty dealera:", dealer_hand[:1], "[Otočená]")
+
+    # Kontroluje jestli neni blackjack
+    if "Eso" in player_hand and ("Jack" in player_hand or "Dama" in player_hand or "Kral" in player_hand):
+        print("Blackjack!")
+
+    # Hra
+    while True:
+        # Input od hrace
+
+        print("Můžete vzít další kartu (h), nebo stát (s).")
+        action = input("Co chcete udělat? ")
+
+        # Hit
+        if action == "h":
+            # Bere dalsi kartu
+            player_hand.append(deck.pop(0))
+            print("Vaše karty:", player_hand)
+
+            # Kontroluje jestli neni blackjack
+            if "Eso" in player_hand and ("Jack" in player_hand or "Dama" in player_hand or "Kral" in player_hand):
+                print("Blackjack!")
+                break
+
+            # Kontroluje jestli neni bust (pres 21)
+            if sum([int(card.split()[0]) if card.split()[0].isdigit() else 10 for card in player_hand]) > 21:
+                print("Přestřelil jsi!")
+                break
+
+        # Stay
+        elif action == "s":
+            break
+
+        # Spatny input od hrace
+        else:
+            print("Zkuste to znovu.")
+
+    # Dealerovo kolo
+    print("Hraje dealer..")
+
+    # Dealer bere kartu, pokud nema v ruce vic jak 17
+    while sum([int(card.split()[0]) if card.split()[0].isdigit() else 10 for card in dealer_hand]) < 17:
+        dealer_hand.append(deck.pop(0))
+        print("Karty dealera:", dealer_hand)
+
+    # Vypocet skore hrace a dealera
+    player_score = sum([int(card.split()[0]) if card.split()[0].isdigit() else 10 for card in player_hand])
+    dealer_score = sum([int(card.split()[0]) if card.split()[0].isdigit() else 10 for card in dealer_hand])
+
+    # Tiskne vysledek a rozdava penize
+    print("Vaše skóre:", player_score)
+    print("Dealerovo skóre:", dealer_score)
+    if player_score > 21:
+        print("Prohrál jsi.")
+    elif dealer_score > 21 or player_score > dealer_score:
+        konto = konto - bet + bet*3
+        print("Vyhrál jsi! Vyhráváš: ",bet*3)
+    elif player_score < dealer_score:
+        print("Prohrál jsi.")
+    else:
+        konto = konto - bet + bet
+        print("Remíze, získáváš zpět svou sázku: ",bet)
+
 
 def kone():
     global konto
@@ -126,7 +236,11 @@ def casino():
                 if answer.lower() != 'ano':
                     casino()
         elif choice == '3':
-            print("Tato sekce zatím není otevřena")
+            while True:
+                Blackjack()
+                answer = input("Chcete pokračovat? (ano/ne): ")
+                if answer.lower() != 'ano':
+                    casino()
         elif choice == '4':
             while True:
                 kone()
