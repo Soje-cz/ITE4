@@ -192,7 +192,6 @@ def Blackjack():
         konto = konto - bet + bet
         print("Remíze, získáváš zpět svou sázku: ",bet)
 
-
 def kone():
     global konto
     while True:
@@ -211,9 +210,28 @@ def kone():
         konto = konto - bet + bet * 6
         print ("Vyhra činí", bet*6)
     else:
+        konto = konto - bet
         print("Prohra vyhrál kůň",vyhernikun)    
-        
     
+def coinflip():
+    global konto
+    bet = konto
+    win = random.randint(0, 1)
+    print("Panna nebo Orel?")
+    print("Pro pannu zadejte 1, pro orel zadejte 2")
+    choice = input("1 or 2: ")
+    
+    if choice in ('1', '2'):
+        if (choice == "1" and win == 0) or (choice == "2" and win == 1):
+            print("Vyhrál jste")
+            konto += bet * 100
+        else:
+            print("Prohrál jste")
+            konto = konto - bet
+    else:
+        print("Neplatná volba")
+
+        
 
 
 def casino():
@@ -224,9 +242,11 @@ def casino():
     print("4. Sazeni na koně")
     print("5. Automaty")
     print("6. Bingo")
+    print("7. Coinflip")
+    print("0. Odejít")
 
-    choice = input("Vyberte operaci (1/2/3/4/5/6): ")
-    if choice in ('1', '2', '3', '4', '5'):
+    choice = input("Vyberte operaci (0/1/2/3/4/5/6/7): ")
+    if choice in ('1', '2', '3', '4', '5', '6', '7', "0"):
         if choice == '1':
             penize()
         if choice == '2':
@@ -251,6 +271,14 @@ def casino():
             print("Tato sekce zatím není otevřena")
         elif choice == '6':
             print("Tato sekce zatím není otevřena")
+        elif choice == '7':
+            while True:
+                coinflip()
+                answer = input("Chcete pokračovat? (ano/ne): ")
+                if answer.lower() != 'ano':
+                    casino()
+        elif choice == '0':
+            quit()
         else:
             print("Neznámá operace.")
 
