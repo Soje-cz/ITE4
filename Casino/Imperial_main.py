@@ -3,9 +3,10 @@ import msvcrt
 
 print("Vítejte v Casinu imperial")
 
-def konto():
+def penize():
     global konto
     konto = int(input("Vložte finanční prostředky: "))
+    print("Na vašem konťe je", konto)
     casino()
 
 def rulleta():
@@ -100,7 +101,7 @@ def kone():
         konto = konto - bet + bet * 6
         print ("Vyhra činí", bet*6)
     else:
-        print("prohra vyhrál kůň",vyhernikun)    
+        print("Prohra vyhrál kůň",vyhernikun)    
         
     
 
@@ -117,7 +118,7 @@ def casino():
     choice = input("Vyberte operaci (1/2/3/4/5/6): ")
     if choice in ('1', '2', '3', '4', '5'):
         if choice == '1':
-            konto()
+            penize()
         if choice == '2':
             while True:
                 rulleta()
