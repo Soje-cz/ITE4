@@ -35,6 +35,11 @@ def penize():
         else:
             print("Toto nebyla možnost.")
             penize()
+def sazka():
+    
+
+
+
 
 def rulleta():
     global konto
@@ -761,7 +766,7 @@ def casino():
                 answer = input("Chcete pokračovat? (ano/ne): ")
                 if answer.lower() != 'ano':
                     casino()
-        elif choice == '0':
+        elif choice == '0':a
             quit()
         else:
             print("Neznámá operace.")
