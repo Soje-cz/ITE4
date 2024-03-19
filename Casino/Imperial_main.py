@@ -635,6 +635,80 @@ def coinflip():
     else:
         print("Neplatná volba")
 
+def bingo():
+    global konto
+    while True:
+        bet = int(input("Zadejte sázku prosím: "))
+        if bet > konto:
+            print_yellow("Nemáte dostatek financí.")
+            continue
+        if bet <= konto:
+            break
+
+    w = random.randint(8,20)       
+    def generate_bingo_card():
+        card = []
+        for i in range(5):
+            column = random.sample(range(1 + i * 15, 16 + i * 15), 5)
+            card.extend(column)
+        card[12] = "X"
+        return card
+
+    def display_bingo_card(card):
+        print(" B   I   N   G   O")
+        for i in range(5):
+            for j in range(5):
+                if i == 2 and j == 2:
+                    print("|  " + str(card[i * 5 + j]) + " ", end="")
+                else:
+                    print("| " + str(card[i * 5 + j]) + " ", end="")
+            print("|")
+
+    def check_bingo(card, drawn_numbers):
+        rows = [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24]]
+        cols = [[0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24]]
+        diagonals = [[0, 6, 12, 18, 24], [4, 8, 12, 16, 20]]
+
+        for row in rows:
+            if all(number in drawn_numbers for number in [card[i] for i in row]):
+                return True
+
+        for col in cols:
+            if all(number in drawn_numbers for number in [card[i] for i in col]):
+                return True
+
+        for diagonal in diagonals:
+            if all(number in drawn_numbers for number in [card[i] for i in diagonal]):
+                return True
+
+        return False
+
+    def play_bingo():
+        print("Bingo Imperial")
+        input("Stiskni ENTER pro pokračovaní...")
+        card = generate_bingo_card()
+        display_bingo_card(card)
+
+        drawn_numbers = set()
+    for turn in range(1, 21):
+        w = random.randint(5,10)
+        input("Stiskni ENTER pro pokračovaní...")
+        drawn_number = random.randint(1, 75)
+        print("Tažené č:", drawn_number)
+        drawn_number.add(drawn_number)
+        if drawn_number in card:
+            card[card.index(drawn_number)] = "X"
+        display_bingo_card(card)
+        if check_bingo(card, drawn_number):
+            konto = konto + bet*1.5
+            print("Bingo! Vyhrál jste",konto)
+            break
+        if turn == w:
+            print("Prohra.")
+            konto = konto - bet
+
+    play_bingo()
+
         
 
 
@@ -676,7 +750,11 @@ def casino():
         elif choice == '5':
             automat()
         elif choice == '6':
-            print("Tato sekce zatím není otevřena")
+            while True:
+                bingo()
+                answer = input("Chcete pokračovat? (ano/ne): ")
+                if answer.lower() != 'ano':
+                    casino()
         elif choice == '7':
             while True:
                 coinflip()
