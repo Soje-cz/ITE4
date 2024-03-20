@@ -19,3 +19,13 @@ window = pyglet.window.Window(WIDTH, HEIGHT)
 # Inicializace hada
 snake = [(WIDTH // 2, HEIGHT // 2)]
 snake_direction = key.RIGHT
+
+
+
+#toto napsal Patrik - konfigurace food
+#Inicializace jídla
+food = pyglet.resource.image('food.png')
+food_sprite = pyglet.sprite.Sprite(food)
+food_sprite.scale = BLOCK_SIZE / max(food.width, food.height)
+food_sprite.x = random.randint(0, (WIDTH - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+food_sprite.y = random.randint(0, (HEIGHT - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
