@@ -49,7 +49,27 @@ def kontrola_výhry():
         return "Remíza"
     else:
         return False
+def vymazat_desku():
+    for řádek in range(5):
+        for sloupec in range(5):
+            tlačítka[řádek][sloupec].config(text="", bg="#FFFFFF")  # Změna pozadí na bílé pro lepší čitelnost
 
+# Funkce pro aktualizaci počtu odehraných kol
+def aktualizovat_kola():
+    popisky_kol.config(text="Kola: " + str(kola[hráči[0]]) + " - " + str(kola[hráči[1]]))
+
+# Funkce pro zakázání tlačítek na konci hry
+def zakázat_tlačítka():
+    for řádek in range(5):
+        for sloupec in range(5):
+            tlačítka[řádek][sloupec].config(state="disabled")
+            tlačítka[řádek][sloupec].config(bg="#FFFFFF")  # Změna pozadí na bílé pro lepší čitelnost
+
+# Funkce pro povolení tlačítek pro nové kolo
+def povolit_tlačítka():
+    for řádek in range(5):
+        for sloupec in range(5):
+            tlačítka[řádek][sloupec].config(state="normal")
 # Funkce pro další tah
 def další_kolo(řádek, sloupec):
     global hráč, odehraná_kola, pauza_kola
