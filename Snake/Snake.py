@@ -47,3 +47,4 @@ def on_draw():
     # Pokud je hra ukončena, zobraz tlačítko restart
     if game_over:
         restart_button.draw()
+        
