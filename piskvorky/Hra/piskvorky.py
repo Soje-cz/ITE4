@@ -83,3 +83,34 @@ def další_kolo(řádek, sloupec):
             hráč = hráči[1] if hráč == hráči[0] else hráči[0]
             popisek.config(text=(hráč + " je na tahu"))
 
+# Funkce pro spuštění nového kola
+def nové_kolo():
+    global hráč, pauza_kola
+
+    hráč = random.choice(hráči)
+    popisek.config(text=hráč
+ + " je na tahu")
+    vymazat_desku()
+    povolit_tlačítka()
+    pauza_kola = False
+
+# Funkce pro zvýraznění vítězné linie
+def zdůraznit_výherní():
+    for řádek in range(5):
+        for sloupec in range(5):
+            tlačítka[řádek][sloupec].config(state="disabled")
+    kontrola_výhry()  # Zvýraznit vítěznou linii
+
+# Funkce pro spuštění nové hry
+def nová_hra():
+    global hráč, kola, odehraná_kola, pauza_kola
+    hráč = random.choice(hráči)
+    kola = {hráči[0]: 0, hráči[1]: 0}
+    odehraná_kola = 0
+    popisek.config(text=hráč + " je na tahu")
+    popisky_kol.config(text="Kola: 0 - 0")
+    vymazat_desku()
+    povolit_tlačítka()
+    pauza_kola = False
+    tlačítko_kola.config(state="normal")  # Povolit tlačítko pro nové kolo
+
