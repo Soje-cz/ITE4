@@ -13,6 +13,6 @@ Hra se ovládá klávesami A, D (hráč č.1) a <-, -> (hráč č.2). Při start
 ### Užívejte hraní!
 
 Vytvořili:
-- Jan Navrátil (totalní BŮH)
-- Andrea Smílková (spolupracovník)
-- David Koukol (spolupracovník)
+- **Jan Navrátil** (totalní BŮH)
+- **Andrea Smílková** (spolupracovník)
+- **David Koukol** (spolupracovník)
