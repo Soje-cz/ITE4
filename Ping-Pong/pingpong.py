@@ -1,5 +1,5 @@
 #kod na ping pong do programovani (projekt)
-#Jan Navrátil, Andrea Smílková
+#Jan Navrátil, Andrea Smílková, David Koukol
 
 
 #import vsech veci
