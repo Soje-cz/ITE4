@@ -47,6 +47,17 @@ font_size=24, color=(255, 255, 255, 255))
 >>>>>>> 2919beb2591228744580429c32b8eab1dcdb5515
 #vykresleni hada a jidla
 
+#Marek Buchta
+def restart_game():
+    global snake, snake_direction, score, game_over
+    snake = [(WIDTH // 2, HEIGHT // 2)]
+    snake_direction = key.RIGHT
+    food_sprite.x = random.randint(0, (WIDTH - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+    food_sprite.y = random.randint(0, (HEIGHT - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+    score = 0
+    game_over = False
+
+#Zbyňa
 @window.event
 def on_draw():
     window.clear()
