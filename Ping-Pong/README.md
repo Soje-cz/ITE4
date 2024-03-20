@@ -11,3 +11,8 @@ Jako normální ping pong, tato hra je určená pro dva hráče. Tuto hru si tř
 Hra se ovládá klávesami A, D (hráč č.1) a <-, -> (hráč č.2). Při startu hry se náhodně vygeneruje míček a následně vyletí taktéž náhodným směrem. Úkolem hráčů je dostat míček do pole protihráče, tak aby ho znovu netrefil. Při prohře jednoho hráče se zapíšou body a hra pokračuje dále.
 
 ### Užívejte hraní!
+
+Vytvořili:
+- Jan Navrátil (totalní BŮH)
+- Andrea Smílková (spolupracovník)
+- David Koukol (spolupracovník)
