@@ -1,6 +1,7 @@
 import pyglet
 from pyglet.window import key
 import random
+from pyglet.window import Window
 
 # Velikost okna
 WIDTH = 1920
