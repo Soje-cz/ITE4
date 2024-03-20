@@ -29,3 +29,21 @@ food_sprite = pyglet.sprite.Sprite(food)
 food_sprite.scale = BLOCK_SIZE / max(food.width, food.height)
 food_sprite.x = random.randint(0, (WIDTH - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
 food_sprite.y = random.randint(0, (HEIGHT - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+
+#vykresleni hada a jidla
+
+@window.event
+def on_draw():
+    window.clear()
+    # Vykreslení hada
+    for x, y in snake:
+        pyglet.shapes.Rectangle(x, y, BLOCK_SIZE, BLOCK_SIZE, color=(0, 255, 0)).draw()
+    # Vykreslení jídla
+    food_sprite.draw()
+    # Vykreslení skóre
+    label = pyglet.text.Label(f"Skóre: {score}", font_size=12, x=10, y=HEIGHT - 20)
+    label.draw()
+
+    # Pokud je hra ukončena, zobraz tlačítko restart
+    if game_over:
+        restart_button.draw()
