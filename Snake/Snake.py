@@ -57,6 +57,19 @@ def restart_game():
     score = 0
     game_over = False
 
+#Michal Kubala
+def check_collision():
+    # Kolize s okrajem
+    x, y = snake[0]
+    if x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT:
+        return True
+
+    # Kolize s tělem hada
+    if snake[0] in snake[1:]:
+        return True
+
+    return False
+
 #Zbyňa
 @window.event
 def on_draw():
