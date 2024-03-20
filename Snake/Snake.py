@@ -30,6 +30,7 @@ food_sprite.scale = BLOCK_SIZE / max(food.width, food.height)
 food_sprite.x = random.randint(0, (WIDTH - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
 food_sprite.y = random.randint(0, (HEIGHT - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
 
+<<<<<<< HEAD
 
 #Richie
 #Skóre
@@ -42,6 +43,8 @@ game_over = False
 restart_button = pyglet.text.Label('RESTART', x=WIDTH // 2, y=HEIGHT // 2, anchor_x='center', anchor_y='center'
 font_size=24, color=(255, 255, 255, 255))
 =======
+=======
+>>>>>>> 2919beb2591228744580429c32b8eab1dcdb5515
 #vykresleni hada a jidla
 
 @window.event
@@ -59,4 +62,8 @@ def on_draw():
     # Pokud je hra ukončena, zobraz tlačítko restart
     if game_over:
         restart_button.draw()
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 2919beb2591228744580429c32b8eab1dcdb5515
