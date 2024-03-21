@@ -119,3 +119,17 @@ def update(dt):
     # Kontrola kolize
     if check_collision():
         game_over = True
+
+#Michal Kubala
+@window.event
+def on_key_press(symbol, modifiers):
+    global snake_direction
+    if not game_over:
+        if symbol == key.LEFT and snake_direction != key.RIGHT:
+            snake_direction = symbol
+        elif symbol == key.RIGHT and snake_direction != key.LEFT:
+            snake_direction = symbol
+        elif symbol == key.UP and snake_direction != key.DOWN:
+            snake_direction = symbol
+        elif symbol == key.DOWN and snake_direction != key.UP:
+            snake_direction = symbol
