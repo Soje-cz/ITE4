@@ -102,3 +102,20 @@ def update(dt):
             y += BLOCK_SIZE
         elif snake_direction == key.DOWN:
             y -= BLOCK_SIZE
+
+#Aktualizace pozice hada - Buchta
+    snake.insert(0, (x, y))
+
+    # Kolize s jídlem
+    if (x, y) == (food_sprite.x, food_sprite.y):
+        # Vygenerování nového jídla
+        food_sprite.x = random.randint(0, (WIDTH - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+        food_sprite.y = random.randint(0, (HEIGHT - BLOCK_SIZE) // BLOCK_SIZE) * BLOCK_SIZE
+        score += 1
+    else:
+        # Odebrání posledního bloku hada
+        snake.pop()
+
+    # Kontrola kolize
+    if check_collision():
+        game_over = True
