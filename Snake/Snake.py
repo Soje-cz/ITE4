@@ -86,8 +86,19 @@ def on_draw():
     # Pokud je hra ukončena, zobraz tlačítko restart
     if game_over:
         restart_button.draw()
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 2919beb2591228744580429c32b8eab1dcdb5515
+#Miťko Daniel
+def update(dt):
+    global snake_direction, score, game_over
+
+    if not game_over:
+        # Pohyb hada
+        x, y = snake[0]
+        if snake_direction == key.LEFT:
+            x -= BLOCK_SIZE
+        elif snake_direction == key.RIGHT:
+            x += BLOCK_SIZE
+        elif snake_direction == key.UP:
+            y += BLOCK_SIZE
+        elif snake_direction == key.DOWN:
+            y -= BLOCK_SIZE
