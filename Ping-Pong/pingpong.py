@@ -61,3 +61,9 @@ def nakresli_text(text, x, y, pozice_y):
         font_size=VELIKOST_FONTU,
         x=y, y=x, anchor_y=pozice_y)
     napis.draw()
+
+
+
+
+
+pyglet.app.run()
