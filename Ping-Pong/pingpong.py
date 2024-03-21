@@ -48,4 +48,16 @@ def reset():
         rychlost_mice[0] = -RYCHLOST
     rychlost_mice[1] = random.uniform(-1, 1) * RYCHLOST
 
-    
+
+#funkce pro kresleni palek, micku
+def nakresli_obdelnik(x, y, sirka, vyska):
+    obdelnik = pyglet.shapes.Rectangle(x=y, y=x, width=vyska, height=sirka)
+    obdelnik.draw()
+
+#funkce pro kreselni skore
+def nakresli_text(text, x, y, pozice_y):
+    napis = pyglet.text.Label(
+        text,
+        font_size=VELIKOST_FONTU,
+        x=y, y=x, anchor_y=pozice_y)
+    napis.draw()
