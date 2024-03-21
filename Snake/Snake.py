@@ -133,3 +133,14 @@ def on_key_press(symbol, modifiers):
             snake_direction = symbol
         elif symbol == key.DOWN and snake_direction != key.UP:
             snake_direction = symbol
+#Patrik Machů             
+            @window.event
+def on_mouse_press(x, y, button, modifiers):
+    global game_over
+    # Pokud je hra ukončena a hráč klikne na tlačítko restart, restartuj hru
+    if game_over and WIDTH // 2 - restart_button.content_width // 2 <= x <= WIDTH // 2 + restart_button.content_width // 2 \
+            and HEIGHT // 2 - restart_button.content_height // 2 <= y <= HEIGHT // 2 + restart_button.content_height // 2:
+        restart_game()
+
+pyglet.clock.schedule_interval(update, SNAKE_SPEED)
+pyglet.app.run()
