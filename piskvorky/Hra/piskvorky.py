@@ -133,4 +133,31 @@ def nová_hra():
     povolit_tlačítka()
     pauza_kola = False
     tlačítko_kola.config(state="normal")  # Povolit tlačítko pro nové kolo
+okno = Tk()
+okno.title("Piškvorky")
+
+# Nastavení fontů popisků pro lepší čitelnost
+popisek = Label(text=hráč + " je na tahu", font=('Arial', 18, 'bold'))
+popisek.pack(side="top")
+
+popisky_kol = Label(text="Kola: 0 - 0", font=('Arial', 14))
+popisky_kol.pack(side="top")
+
+tlačítko_restart = Button(text="Restart", font=('Arial', 14), command=nová_hra)
+tlačítko_restart.pack(side="top")
+
+tlačítko_kola = Button(text="Nové kolo", font=('Arial', 14), command=nové_kolo)
+tlačítko_kola.pack(side="top")
+
+rámec = Frame(okno)
+rámec.pack()
+
+# Přizpůsobení vzhledu tlačítek pro čistší vzhled
+for řádek in range(5):
+    for sloupec in range(5):
+        tlačítka[řádek][sloupec] = Button(rámec, text="", font=('Arial', 20), width=3, height=1,
+                                           command=lambda řádek=řádek, sloupec=sloupec: další_kolo(řádek, sloupec))
+        tlačítka[řádek][sloupec].grid(row=řádek, column=sloupec, padx=2, pady=2)  # Přidání odsazení pro lepší rozestup
+
+okno.mainloop()
 
