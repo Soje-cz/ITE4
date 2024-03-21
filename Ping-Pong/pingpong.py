@@ -33,3 +33,19 @@ pozice_mice = [0, 0]
 rychlost_mice = [0, 0]
 stisknute_klavesy = set()
 skore = [0, 0]
+
+#definovani vsech funkci
+
+#funkce pro resetovani micku
+def reset():
+
+    pozice_mice[0] = SIRKA // 2
+    pozice_mice[1] = VYSKA // 2
+
+    if random.randint(0, 1):
+        rychlost_mice[0] = RYCHLOST
+    else:
+        rychlost_mice[0] = -RYCHLOST
+    rychlost_mice[1] = random.uniform(-1, 1) * RYCHLOST
+
+    
