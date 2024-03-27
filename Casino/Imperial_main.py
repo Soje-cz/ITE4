@@ -1,8 +1,8 @@
 import random
-import msvcrt
 
 print("Vítejte v Casinu imperial")
 
+global hrac
 global konto
 
 konto = 0
@@ -35,11 +35,6 @@ def penize():
         else:
             print("Toto nebyla možnost.")
             penize()
-def sazka():
-    
-
-
-
 
 def rulleta():
     global konto
@@ -221,15 +216,15 @@ def kone():
             break
     Konici=['Jack','Jhonny','Hope','Julka','Alfie','George','Murphy']
     print(Konici, "\n")    
-    výběr = input("Vyberte koně: ")
+    vyber = input("Vyberte koně: ")
     vyhernikun = random.choice(Konici)
-    if výběr == vyhernikun:
+    if vyber == vyhernikun:
         print_green("Výhral kůň" + vyhernikun)
         konto = konto - bet + bet * 6
         print_green("Výhra činí "+ str(bet*6))
     else:
         konto = konto - bet
-        print_red("Prohra vyhrál kůň",vyhernikun)    
+        print_red("Prohra vyhrál kůň",vyhernikun) 
 
 def automat():
     global bet_mat
@@ -767,7 +762,6 @@ def casino():
                 if answer.lower() != 'ano':
                     casino()
         elif choice == '0':a
-            quit()
         else:
             print("Neznámá operace.")
 
